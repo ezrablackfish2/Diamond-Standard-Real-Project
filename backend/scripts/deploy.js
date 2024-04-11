@@ -33,6 +33,7 @@ async function deployDiamond () {
   const FacetNames = [
     'DiamondLoupeFacet',
     'OwnershipFacet',
+    'NftMarket'
   ]
   const cut = []
   for (const FacetName of FacetNames) {
@@ -41,16 +42,7 @@ async function deployDiamond () {
     await facet.deployed()
     
     console.log(`${FacetName} deployed: ${facet.address}`)
-
-    let functionSelectors = getSelectors(facet);
-    if (FacetName === 'DynamicGameFacet') {
-      functionSelectors = functionSelectors.remove(['supportsInterface']);
-    }
-    cut.push({
-      facetAddress: facet.address,
-      action: FacetCutAction.Add,
-      functionSelectors: getSelectors(facet)
-    })
+    
   }
 
   // upgrade diamond with facets

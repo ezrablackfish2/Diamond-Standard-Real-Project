@@ -47,7 +47,7 @@ function Header(props) {
                 try {
                     await ethereum.request({
                         method: "wallet_switchEthereumChain",
-                        params: [{ chainId: "0x13881" }],
+                        params: [{ chainId: "0x539" }],
                     });
                 } catch (switchError) {
                     if (switchError.code === 4902) {
@@ -56,15 +56,14 @@ function Header(props) {
                                 method: "wallet_addEthereumChain",
                                 params: [
                                     {
-                                        chainId: "0x13881",
-                                        chainName: "Mumbai Testnet",
+                                        chainId: "0x539",
+                                        chainName: "Ganache",
                                         nativeCurrency: {
                                             name: "MATIC",
                                             symbol: "MATIC",
                                             decimals: 18,
                                         },
-                                        rpcUrls: ["https://rpc-mumbai.maticvigil.com/v1/"],
-                                        blockExplorerUrls: ["https://rinkeby.etherscan.io/"],
+                                        rpcUrls: ["HTTP://127.0.0.1:7545"],
                                     },
                                 ],
                             });
