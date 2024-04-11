@@ -42,7 +42,7 @@ struct AppStorage {
     string _name;
     string _symbol;
     string ERC20name;
-    string symbol;
+    string ERC20symbol;
     mapping(uint256 => address) _owners;
     mapping(address => uint256) _balances;
     mapping(uint256 => address) _tokenApprovals;

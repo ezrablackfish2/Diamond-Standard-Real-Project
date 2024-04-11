@@ -13,7 +13,9 @@ library LibERC20 {
 
 	function initiate(address from) internal {
 		AppStorage storage s = LibAppStorage.diamondStorage();
-		s.ERC20balanceOf[from] = 100;	
+		s.ERC20balanceOf[from] = 100;
+		s.ERC20name = "Steelo";
+		s.ERC20symbol = "STH";
 	}
 	function approve(address from, address to, uint256 amount) internal {
 	        AppStorage storage s = LibAppStorage.diamondStorage();

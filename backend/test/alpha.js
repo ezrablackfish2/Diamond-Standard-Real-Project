@@ -239,12 +239,26 @@ describe('DiamondTest', async function () {
         await expect(ERC20.ERC20transferFrom(owner.address, addr1.address, 200)).to.be.reverted;
 
     });
-    it('should fail to transfer alrge amount tokens from one address to reciepient', async function() {
+    it('should fail to transfer large amount tokens from one address to reciepient', async function() {
       
         const ERC20 = await ethers.getContractAt('ezraCoin', diamondAddress)
         await expect(ERC20.ERC20transferFrom(owner.address, addr1.address, 60)).to.be.reverted;
 
     });
+    it('should check name of ERC20 has been changed from the old ezraCoin', async () => { 
+  
+      const ERC20 = await ethers.getContractAt('ezraCoin', diamondAddress)
+      let name = await ERC20.getERC20name()
+      expect(name).to.not.equal("ezraCoin");
+
+    })
+    it('should check name of ERC20 has been initiated to be Steelo', async () => { 
+  
+      const ERC20 = await ethers.getContractAt('ezraCoin', diamondAddress)
+      let name = await ERC20.getERC20name()
+      expect(name).to.equal("Steelo");
+
+    })
 });
     
  

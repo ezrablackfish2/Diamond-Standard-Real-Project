@@ -52,7 +52,7 @@ contract DiamondInit {
         AppStorage storage s = LibAppStorage.diamondStorage();
         LibDiamond.enforceIsContractOwner();
 	s.ERC20name =  ERC20name;
-	s.symbol = ERC20symbol;
+	s.ERC20symbol = ERC20symbol;
 
 
         s.bigBoss = BigBoss({
