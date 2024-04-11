@@ -156,12 +156,7 @@ describe('DiamondTest', async function () {
 //      expect(fee).to.equal(25);
 //    });
 
-    it('should approve transfer of tokens from one account to another with allowance', async () => {
-    const ERC20 = await ethers.getContractAt('ezraCoin', diamondAddress);
-    await expect(ERC20.connect(owner).ERC20approve(addr1.address, ethers.utils.parseEther("10"))).to.not.be.reverted;
-
-
-}).timeout(600000)
+    
 
 
    it('should allow only the nftMarket owner to update fee', async function() {
@@ -203,10 +198,51 @@ describe('DiamondTest', async function () {
         await expect(ERC20.connect(owner).ERC20initiate()).to.not.be.reverted;
 
     });
+    it('should approve transfer of tokens from one account to another with allowance', async () => {
+    const ERC20 = await ethers.getContractAt('ezraCoin', diamondAddress);
+    await expect(ERC20.connect(owner).ERC20approve(addr1.address, 50)).to.not.be.reverted;
+
+}).timeout(600000)
+    it('should fail to transfer a large amount of tokens from owner which he does not have to reciepient', async function() {
+      
+        const ERC20 = await ethers.getContractAt('ezraCoin', diamondAddress)
+        await expect(ERC20.connect(owner).ERC20transfer(addr1.address, 200)).to.be.reverted;
+
+    });
     it('should transfer some tokens from owner to reciepient', async function() {
       
         const ERC20 = await ethers.getContractAt('ezraCoin', diamondAddress)
         await expect(ERC20.connect(owner).ERC20transfer(addr1.address, 10)).to.not.be.reverted;
+
+    });
+    it('should fail to transfer some tokens from owner to reciepient again', async function() {
+      
+        const ERC20 = await ethers.getContractAt('ezraCoin', diamondAddress)
+        await expect(ERC20.connect(owner).ERC20transfer(addr1.address, 90)).to.be.reverted;
+
+    });
+    it('should transfer some tokens from one address to reciepient', async function() {
+      
+        const ERC20 = await ethers.getContractAt('ezraCoin', diamondAddress)
+        await expect(ERC20.ERC20transferFrom(owner.address, addr1.address, 10)).to.not.be.reverted;
+
+    });
+    it('should fail to transfer some tokens from unallowed sender to reciepient', async function() {
+      
+        const ERC20 = await ethers.getContractAt('ezraCoin', diamondAddress)
+        await expect(ERC20.ERC20transferFrom(addr2.address, addr1.address, 10)).to.be.reverted;
+
+    });
+    it('should fail to transfer alrge amount tokens from one address to reciepient', async function() {
+      
+        const ERC20 = await ethers.getContractAt('ezraCoin', diamondAddress)
+        await expect(ERC20.ERC20transferFrom(owner.address, addr1.address, 200)).to.be.reverted;
+
+    });
+    it('should fail to transfer alrge amount tokens from one address to reciepient', async function() {
+      
+        const ERC20 = await ethers.getContractAt('ezraCoin', diamondAddress)
+        await expect(ERC20.ERC20transferFrom(owner.address, addr1.address, 60)).to.be.reverted;
 
     });
 });

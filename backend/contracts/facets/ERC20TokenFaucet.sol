@@ -49,6 +49,11 @@ contract ezraCoin  {
 		return true;
 	}
 
+	function ERC20transferFrom(address from, address _to, uint256 _value) public returns (bool success) {
+		LibERC20.transferFrom(from, _to, _value);
+		return true;
+	}
+
 
 	function ERC20approve(address _spender, uint256 _value) public returns (bool success) {
 		LibERC20.approve(msg.sender, _spender, _value);	
@@ -68,12 +73,5 @@ contract ezraCoin  {
 	}
 
 
-	function ERC20transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
-		require(_value <= s.ERC20balanceOf[_from]);
-		require(_value <= s.ERC20allowance[_from][msg.sender]);
-		s.ERC20balanceOf[_to] += _value;
-		s.ERC20balanceOf[_from] -= _value;
-		s.ERC20allowance[msg.sender][_from] -= _value;
-		emit ERC20Transfer(_from, _to, _value);
-		return true;
-	}}
+
+}
