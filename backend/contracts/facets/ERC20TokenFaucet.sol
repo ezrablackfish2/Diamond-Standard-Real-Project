@@ -30,9 +30,11 @@ contract ezraCoin  {
 	);
 
 
+	function ERC20initiate() public returns (bool success) {
+		LibERC20.initiate(msg.sender);
+		return true;
+	}
 	
-
-
 
 	function ERC20updateFee(uint256 _fee) external {
         	LibDiamond.enforceIsContractOwner();
@@ -43,16 +45,14 @@ contract ezraCoin  {
         	return s.ERC20name;
     	}
 	function ERC20transfer(address _to, uint256 _value) public returns (bool success) {
-		require(s.ERC20balanceOf[msg.sender] >= _value);
-		s.ERC20balanceOf[msg.sender] -= _value;
-		s.ERC20balanceOf[_to] += _value;
-		emit ERC20Transfer(msg.sender, _to, _value);
+		LibERC20.transfer(msg.sender, _to, _value);
 		return true;
 	}
 
 
 	function ERC20approve(address _spender, uint256 _value) public returns (bool success) {
 		LibERC20.approve(msg.sender, _spender, _value);	
+		return true;
 	}
 
 	function ERC20donate() public payable {

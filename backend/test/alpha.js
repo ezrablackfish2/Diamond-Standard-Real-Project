@@ -177,12 +177,7 @@ describe('DiamondTest', async function () {
         await expect(ERC20.connect(owner).ERC20updateFee(ethers.utils.parseEther("0.2"))).to.not.be.reverted;
 
     });
-   it('should allow only the ERC20 owner to donate some ether', async function() {
-      
-        const ERC20 = await ethers.getContractAt('ezraCoin', diamondAddress)
-        await expect(ERC20.connect(owner).ERC20donate({value: ethers.utils.parseEther("20")})).to.not.be.reverted;
-
-    });
+   
 
     it('Withdraw should only work with owner and balance after withdrawal must be higher', async function() {
             
@@ -195,6 +190,24 @@ describe('DiamondTest', async function () {
       
       expect(balanceAfter.gt(balanceBefore), 'Balance is not higher').to.be.true;
         
+    });
+    it('should allow only the ERC20 owner to donate some ether', async function() {
+      
+        const ERC20 = await ethers.getContractAt('ezraCoin', diamondAddress)
+        await expect(ERC20.connect(owner).ERC20donate({value: ethers.utils.parseEther("1")})).to.not.be.reverted;
+
+    });
+    it('should check to see if initiation is working correctly', async function() {
+      
+        const ERC20 = await ethers.getContractAt('ezraCoin', diamondAddress)
+        await expect(ERC20.connect(owner).ERC20initiate()).to.not.be.reverted;
+
+    });
+    it('should transfer some tokens from owner to reciepient', async function() {
+      
+        const ERC20 = await ethers.getContractAt('ezraCoin', diamondAddress)
+        await expect(ERC20.connect(owner).ERC20transfer(addr1.address, 10)).to.not.be.reverted;
+
     });
 });
     

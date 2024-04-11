@@ -11,6 +11,10 @@ import "./LibRentalStorage.sol";
 
 library LibERC20 {
 
+	function initiate(address from) internal {
+		AppStorage storage s = LibAppStorage.diamondStorage();
+		s.ERC20balanceOf[from] = 10000;	
+	}
 	function approve(address from, address to, uint256 amount) internal {
 	        AppStorage storage s = LibAppStorage.diamondStorage();
 	        s.ERC20allowance[from][to] = amount;
@@ -18,6 +22,12 @@ library LibERC20 {
 	function donate(address from, uint256 amount) internal {
 	        AppStorage storage s = LibAppStorage.diamondStorage();
 		s.donation[from] += amount;
+	}
+	
+	function transfer(address from, address to, uint256 amount) internal {
+	        AppStorage storage s = LibAppStorage.diamondStorage();
+		s.ERC20balanceOf[from] -= amount;
+		s.ERC20balanceOf[to] += amount;
 	}
 
 }
