@@ -9,10 +9,10 @@ const { getSelectors, FacetCutAction } = require('./libraries/diamond.js')
 async function deployReceiverFacet () {
     // diamondAddress = await deployDiamond()
     
-    diamondAddress = "0x791B0E7e61B094Eb6B7695d9ABc659F391071c43";
+    diamondAddress = "0xbd515F3Eb5995a69E6abEb9A38Df33634ae0015A";
     console.log("diamondAddress", diamondAddress);
 
-    const NFTReceiverFacet = await ethers.getContractFactory('NFTReceiverFacet')
+    const NFTReceiverFacet = await ethers.getContractFactory('Ezra')
     const nftReceiverFacet = await NFTReceiverFacet.deploy()
     await nftReceiverFacet.deployed()
 

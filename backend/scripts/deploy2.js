@@ -9,10 +9,10 @@ const { getSelectors, FacetCutAction } = require('./libraries/diamond.js')
 async function deployDynamicGameFacet () {
     // diamondAddress = await deployDiamond()
     
-    diamondAddress = "0x791B0E7e61B094Eb6B7695d9ABc659F391071c43";
+    diamondAddress = "0xbd515F3Eb5995a69E6abEb9A38Df33634ae0015A";
     console.log("diamondAddress", diamondAddress);
 
-    const DynamicGameFacet = await ethers.getContractFactory('DynamicGameFacet')
+    const DynamicGameFacet = await ethers.getContractFactory('STEELOFacet')
     const dynamicGameFacet = await DynamicGameFacet.deploy()
 
     console.log('Deployed dynamicGameFacet to ', dynamicGameFacet.address)
@@ -20,7 +20,6 @@ async function deployDynamicGameFacet () {
     let addresses = [];
     addresses.push(dynamicGameFacet.address)
     let selectors = getSelectors(dynamicGameFacet)
-    selectors = selectors.remove(['supportsInterface'])
 
     const diamondCutFacet = await ethers.getContractAt('IDiamondCut', diamondAddress)
     const diamondLoupeFacet = await ethers.getContractAt('DiamondLoupeFacet', diamondAddress)

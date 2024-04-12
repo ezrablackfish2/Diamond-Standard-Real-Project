@@ -2,36 +2,6 @@
   {
     "inputs": [
       {
-        "internalType": "string",
-        "name": "ERC20name",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "ERC20symbol",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "bossName",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "bossImageURI",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "bossHp",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "bossAttackDamage",
-        "type": "uint256"
-      },
-      {
         "internalType": "string[]",
         "name": "characterNames",
         "type": "string[]"
@@ -55,6 +25,26 @@
         "internalType": "string[]",
         "name": "characterLevels",
         "type": "string[]"
+      },
+      {
+        "internalType": "string",
+        "name": "bossName",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "bossImageURI",
+        "type": "string"
+      },
+      {
+        "internalType": "uint256",
+        "name": "bossHp",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "bossAttackDamage",
+        "type": "uint256"
       }
     ],
     "name": "init",

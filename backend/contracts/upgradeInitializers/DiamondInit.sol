@@ -23,19 +23,15 @@ contract DiamondInit {
 
     // You can add parameters to this function in order to pass in 
     // data to set your own state variables
-    function init(
-      string memory ERC20name,
-      string memory ERC20symbol, 
-      string memory bossName, 
-      string memory bossImageURI,
-      uint bossHp,
-      uint bossAttackDamage,
-      string[] memory characterNames,
+    function init(string[] memory characterNames,
       string[] memory characterImageURIs,
       uint[] memory characterHp,
       uint[] memory characterAttackDmg,
-      string[] memory characterLevels
-      ) external {
+      string[] memory characterLevels,
+      string memory bossName, 
+      string memory bossImageURI,
+      uint bossHp,
+      uint bossAttackDamage) external {
         // adding ERC165 data
         LibDiamond.DiamondStorage storage ds = LibDiamond.diamondStorage();
         ds.supportedInterfaces[type(IERC165).interfaceId] = true;
@@ -51,9 +47,8 @@ contract DiamondInit {
         // More info here: https://eips.ethereum.org/EIPS/eip-2535#diamond-interface 
         AppStorage storage s = LibAppStorage.diamondStorage();
         LibDiamond.enforceIsContractOwner();
-	s.ERC20name =  ERC20name;
-	s.ERC20symbol = ERC20symbol;
-
+        s._name = "Heroes";
+        s._symbol = "HERO";
 
         s.bigBoss = BigBoss({
           name: bossName,
@@ -63,7 +58,7 @@ contract DiamondInit {
           attackDamage: bossAttackDamage
         });
 
-	for(uint i = 0; i < characterNames.length; i += 1) {
+        for(uint i = 0; i < characterNames.length; i += 1) {
 
           s.defaultCharacters.push(CharacterAttributes({
             characterIndex: i,
@@ -74,13 +69,13 @@ contract DiamondInit {
             attackDamage: characterAttackDmg[i],
             levels: characterLevels[i]
           }));
-	}
-        
+
+        }
 
         s._tokenIds += 1;
         s.fee = 0.1 ether;
         s._status = AppConstants._NOT_ENTERED;
-        s.ezraMode = true;
+        
 
     }
     

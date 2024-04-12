@@ -1,1 +1,0 @@
-export { default as LentNFTs } from './Lent'

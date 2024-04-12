@@ -39,6 +39,10 @@ library AppConstants{
 
 
 struct AppStorage {
+    //ERC721
+    string name;
+    string symbol;
+    uint256 totalSupply;
     string _name;
     string _symbol;
     string ERC20name;
@@ -73,12 +77,11 @@ struct AppStorage {
     uint256 _status;
     string baseUri;
 
-    // new additionals for ERC20
+    // additional
     mapping (address => uint256) donation;
     mapping(address => uint256) ERC20balanceOf;
     mapping(address => mapping(address => uint256)) ERC20allowance;
     bool ezraMode;
-
 }
 
 library LibAppStorage {

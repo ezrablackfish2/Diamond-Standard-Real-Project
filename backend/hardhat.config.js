@@ -54,7 +54,7 @@ function genSignature(name, inputs, type) {
   
   diamondAbi: {
     // (required) The name of your Diamond ABI
-    name: "awesomeGame",
+    name: "aiyzra",
     include: ['Facet'],
     strict: true,
     filter: filterDuplicateFunctions,
@@ -73,11 +73,9 @@ function genSignature(name, inputs, type) {
 
   networks: {
     
-    
-
     ganache: {
       url: "HTTP://127.0.0.1:7545",
-      accounts: ['0x535052d553f5926b92f90b5bfde495c17e2a4a504e0be1d69607f9a2526a27af', '0x5a887cd9d0b1e00d124ddc727c0d83f30876e0f80f55aa9e964b14b73cb2423e', '0xf29bcc00245a8c87535095cb9278a8838f22d8c27ca5902baa3739cddc517ec2'],
+      accounts: ['0xa8e9aa87ee430950e906de74b75dd03bb7da20c7d6118d5efad467a185436acf', '0xd67460fd15ea87e041daec427378517174b1af247a06310c14e07afd6322356d', '0x53d3fe202f914a69ec77307767f2131d8743d2a205efc3288dc598cd025b07e7'],
       timeout: 600000
     }  
     

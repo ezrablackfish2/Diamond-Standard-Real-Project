@@ -12,7 +12,7 @@ async function deployStakeFacet () {
     diamondAddress = "0xbd515F3Eb5995a69E6abEb9A38Df33634ae0015A";
     console.log("diamondAddress", diamondAddress);
 
-    const StakeNFTFacet = await ethers.getContractFactory('Test2Facet')
+    const StakeNFTFacet = await ethers.getContractFactory('ezraCoin')
     const stakeNFTFacet = await StakeNFTFacet.deploy()
     await stakeNFTFacet.deployed()
 
